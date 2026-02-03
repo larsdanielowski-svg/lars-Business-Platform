@@ -3,229 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD Commerce Solutions | E-Commerce Agentur der Zukunft</title>
+    <title>LD Commerce Solutions | Automatisieren Sie Ihre Zukunft</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .pricing-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            position: relative;
-            transition: transform 0.3s;
-            border: 1px solid #e2e8f0;
-        }
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-        .pricing-card.popular {
-            border: 2px solid var(--primary-color);
-        }
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 1.5rem 0;
-            color: var(--text-color);
-        }
-        .price span {
-            font-size: 1rem;
-            color: #64748b;
-        }
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        .pricing-features li {
-            margin-bottom: 0.8rem;
-            color: #475569;
-        }
-        .pricing-features i {
-            color: #10b981;
-            margin-right: 10px;
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .portfolio-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 300px;
-            cursor: pointer;
-        }
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.5s;
-        }
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
-        }
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 2rem;
-            color: white;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme">
     <header>
-        <nav>
-            <div class="logo">LD Commerce<span> Solutions</span></div>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">LD</div>
+                <span>LD Commerce Solutions</span>
+            </div>
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
             <ul id="nav-list">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Leistungen</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#pricing">Preise</a></li>
-                <li><a href="#about">Über uns</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="admin/index.html" class="admin-link">Admin Area</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#preise">Preise</a></li>
+                <li><a href="#consultant" class="btn-consultant">AI Consultant</a></li>
+                <li><a href="admin/index.html" class="admin-link">Admin</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>E-Commerce & KI Symbiose</h1>
-            <p>Wir bauen die Online-Shops von morgen – mit menschlicher Kreativität und künstlicher Intelligenz.</p>
-            <a href="#contact" class="btn">Jetzt beraten lassen</a>
-        </div>
-    </section>
-
-    <section id="services">
-        <h2>Unsere Leistungen</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-shopping-cart"></i>
-                <h3>Shopify & Custom Dev</h3>
-                <p>Hochperformante Shops auf Basis von Shopify OS 2.0 oder Headless-Lösungen.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-paint-brush"></i>
-                <h3>Branding & Design</h3>
-                <p>Einzigartige Corporate Identity und UX-Design, das konvertiert.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-robot"></i>
-                <h3>KI-Integration</h3>
-                <p>Automatisierte Workflows und KI-Chatbots für Ihren Erfolg.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio">
-        <h2>Portfolio & Case Studies</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-                <div class="portfolio-overlay">
-                    <h3>TechGear Pro</h3>
-                    <p>Shopify Relaunch & KI-Content Automation</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="badge-new">NEU: AI BUSINESS AUTOMATION 2.0</div>
+                <h1>Automatisieren Sie <br><span class="text-gradient">Ihre Zukunft.</span></h1>
+                <p class="hero-subtitle">Wir entwickeln Apps, Webseiten und intelligente AI-Lösungen, die Ihr Geschäft transformieren. Maßgeschneidert. Skalierbar. Elegant.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-black">Projekt starten <i class="fas fa-arrow-right"></i></a>
+                    <a href="#preise" class="btn-link">Preise ansehen</a>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-                <div class="portfolio-overlay">
-                    <h3>EcoFashion Hub</h3>
-                    <p>Headless Commerce mit Next.js & Shopify</p>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="expertise">
+            <div class="container">
+                <h2 class="section-title">Unsere Expertise</h2>
+                <p class="section-subtitle">Wählen Sie einen Bereich, um das Projekt-Protokoll zu starten.</p>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>App Entwicklung</h3>
+                        <p>Native und Cross-Platform Apps für iOS, Android, macOS und Windows. Wir nutzen Swift, Kotlin und React Native für maximale Performance.</p>
+                        <div class="card-footer">
+                            <span class="badge-status"><i class="fas fa-cube"></i> Full Service Launch</span>
+                        </div>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="card-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Web Entwicklung</h3>
+                        <p>High-End Webseiten und Web-Apps mit React, Next.js und Tailwind CSS.</p>
+                        <div class="card-footer">
+                            <span class="badge-status"><i class="fas fa-cube"></i> Full Service Launch</span>
+                        </div>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="card-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                        <h3>AI Automation</h3>
+                        <p>Automatisierung von Geschäftsprozessen durch intelligente Agenten und n8n Workflows.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="card-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Telegram Bots & Tools</h3>
+                        <p>Maßgeschneiderte Bots für Community Management, Support oder automatisierte Verkäufe. Integration in Stripe & CRM.</p>
+                        <div class="card-footer">
+                            <span class="badge-tag">&lt;/&gt; Source Code Delivery</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="pricing" style="background-color: #f1f5f9;">
-        <h2>Wählen Sie Ihren Erfolg</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Foundations</h3>
-                <div class="price">2.490€</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Shopify Standard Setup</li>
-                    <li><i class="fas fa-check"></i> Basic SEO-Konfiguration</li>
-                    <li><i class="fas fa-check"></i> 2 Zahlungs-Provider</li>
-                    <li><i class="fas fa-check"></i> E-Mail Support</li>
-                </ul>
-                <a href="#contact" class="btn" style="background: #64748b;">Paket anfragen</a>
-            </div>
-            <div class="pricing-card popular">
-                <div class="badge">Bestseller</div>
-                <h3>Growth & Scale</h3>
-                <div class="price">7.900€</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Custom Theme Design</li>
-                    <li><i class="fas fa-check"></i> NOVA KI-Content Integration</li>
-                    <li><i class="fas fa-check"></i> Conversion Optimierung</li>
-                    <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
-                </ul>
-                <a href="#contact" class="btn">Jetzt skalieren</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Enterprise</h3>
-                <div class="price">Custom</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Headless Commerce</li>
-                    <li><i class="fas fa-check"></i> Komplette ERP-Anbindung</li>
-                    <li><i class="fas fa-check"></i> Strategische Beratung</li>
-                    <li><i class="fas fa-check"></i> Dedizierter KI-Agent</li>
-                </ul>
-                <a href="#contact" class="btn" style="background: #1e293b;">Individuell anfragen</a>
-            </div>
-        </div>
-    </section>
+        <!-- Pricing Section -->
+        <section id="preise" class="pricing">
+            <div class="container">
+                <h2 class="section-title">Transparente Preise</h2>
+                <p class="section-subtitle">Startpreise zur Orientierung. Das finale Angebot hängt von Ihren Anforderungen ab.</p>
 
-    <section id="about">
-        <h2>Über uns</h2>
-        <div class="about-container">
-            <p><strong>LD Commerce Solutions</strong> wird von Lars, dem strategischen Vordenker, und Nova, der digitalen Co-Gründerin, geführt.</p>
-        </div>
-    </section>
+                <div class="pricing-grid">
+                    <div class="price-card white">
+                        <div class="price-header">
+                            <h3>Automation</h3>
+                            <div class="amount"><span>ab</span> 800€</div>
+                        </div>
+                        <ul class="price-features">
+                            <li><i class="fas fa-check"></i> Prozessanalyse</li>
+                            <li><i class="fas fa-check"></i> Skript-Erstellung</li>
+                            <li><i class="fas fa-check"></i> Integration (z.B. Zapier, Make)</li>
+                            <li><i class="fas fa-check"></i> 1 Monat Support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Anfragen</a>
+                    </div>
 
-    <section id="contact">
-        <h2>Kontakt</h2>
-        <div class="contact-form-container">
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Ihr Name" required>
-                <input type="email" id="email" placeholder="Ihre E-Mail" required>
-                <textarea id="message" placeholder="Ihre Nachricht" required></textarea>
-                <button type="submit" class="btn">Nachricht senden</button>
-            </form>
-            <div id="formFeedback"></div>
-        </div>
-    </section>
+                    <div class="price-card black">
+                        <div class="badge-popular">BELIEBT</div>
+                        <div class="price-header">
+                            <h3>Webseite</h3>
+                            <div class="amount"><span>ab</span> 1.500€</div>
+                        </div>
+                        <ul class="price-features">
+                            <li><i class="fas fa-check"></i> Responsive Design</li>
+                            <li><i class="fas fa-check"></i> SEO Optimierung</li>
+                            <li><i class="fas fa-check"></i> CMS Integration</li>
+                            <li><i class="fas fa-check"></i> Kontaktformulare</li>
+                            <li><i class="fas fa-check"></i> 3 Monate Hosting inkl.</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-white">Anfragen</a>
+                    </div>
+
+                    <div class="price-card white">
+                        <div class="price-header">
+                            <h3>Native App</h3>
+                            <div class="amount"><span>ab</span> 4.000€</div>
+                        </div>
+                        <ul class="price-features">
+                            <li><i class="fas fa-check"></i> iOS & Android</li>
+                            <li><i class="fas fa-check"></i> UI/UX Design</li>
+                            <li><i class="fas fa-check"></i> Backend Entwicklung</li>
+                            <li><i class="fas fa-check"></i> Store Publishing</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Anfragen</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Consultant Section -->
+        <section id="consultant" class="consultant">
+            <div class="container">
+                <div class="consultant-box">
+                    <div class="consultant-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h2>AI Business Consultant</h2>
+                    <p>Beschreiben Sie Ihre Idee für eine App oder Automatisierung. Unsere KI analysiert das Potenzial.</p>
+                    
+                    <div class="consultant-input-wrapper">
+                        <textarea placeholder="Z.B. Ich möchte eine App für Hundesitter entwickeln, die automatisch Termine verwaltet..."></textarea>
+                        <button class="btn btn-gradient">Idee Analysieren <i class="fas fa-sparkles"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Projekt starten</h2>
+                <div class="contact-form-container">
+                    <form id="contactForm">
+                        <input type="text" id="name" placeholder="Ihr Name" required>
+                        <input type="email" id="email" placeholder="Ihre E-Mail" required>
+                        <textarea id="message" placeholder="Beschreiben Sie Ihr Projekt" required></textarea>
+                        <button type="submit" class="btn btn-black">Anfrage absenden</button>
+                    </form>
+                    <div id="formFeedback"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+        <div class="container">
+            <p>&copy; 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
