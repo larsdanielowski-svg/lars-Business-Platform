@@ -66,6 +66,29 @@ window.deleteMessage = function(id) {
     displayMessages();
 };
 
+// Mobile Menu Logic
+const mobileMenu = document.getElementById('mobile-menu');
+const navList = document.getElementById('nav-list');
+
+if (mobileMenu && navList) {
+    mobileMenu.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        const icon = mobileMenu.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when clicking a link
+    navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+}
+
 window.clearAllMessages = function() {
     if (confirm('Wirklich alle Nachrichten löschen?')) {
         localStorage.removeItem('contact_messages');
