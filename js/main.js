@@ -7,11 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
-            // In einer echten Implementierung würde man hier eine Klasse umschalten
-            // und CSS nutzen, um das Menü anzuzeigen/zu verstecken
-            alert('Mobil-Menü Logik: Hier würde das Menü ein/ausgeklappt werden.');
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
         });
     }
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) icon.classList.replace('fa-times', 'fa-bars');
+        });
+    });
 
     // Kontaktformular Handling
     const contactForm = document.getElementById('contact-form');
