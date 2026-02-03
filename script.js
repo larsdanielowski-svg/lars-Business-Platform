@@ -84,10 +84,44 @@ if (mobileMenu && navList) {
             navList.classList.remove('active');
             const icon = mobileMenu.querySelector('i');
             icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            icon.classList.remove('times');
         });
     });
 }
+
+// Apple-Style Scroll Animations
+document.addEventListener('DOMContentLoaded', () => {
+    const sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '30px',
+        duration: 1000,
+        delay: 200,
+        reset: false // Animation happens only once
+    });
+
+    // Animate Hero
+    sr.reveal('.hero h1', { delay: 300, origin: 'top' });
+    sr.reveal('.hero-subtitle', { delay: 500 });
+    sr.reveal('.hero-cta', { delay: 700 });
+
+    // Animate Expertise Cards with Stagger
+    sr.reveal('.expertise-card', { 
+        interval: 200,
+        distance: '50px' 
+    });
+
+    // Animate Pricing Cards with Stagger
+    sr.reveal('.price-card', { 
+        interval: 300,
+        origin: 'bottom'
+    });
+
+    // Animate Consultant Section
+    sr.reveal('.consultant-box', { 
+        delay: 200,
+        scale: 0.95
+    });
+});
 
 window.clearAllMessages = function() {
     if (confirm('Wirklich alle Nachrichten löschen?')) {
