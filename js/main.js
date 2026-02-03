@@ -19,10 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            if (icon) icon.classList.replace('fa-times', 'fa-bars');
+        link.addEventListener('click', (e) => {
+            // Check if it's an anchor link
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) icon.classList.replace('fa-times', 'fa-bars');
+                
+                // Allow the jump to happen, but ensure it's smooth
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         });
     });
 
