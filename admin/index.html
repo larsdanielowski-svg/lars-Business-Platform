@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <header class="admin-header">
+        <div class="logo">LDC <span>Admin</span></div>
+        <nav>
+            <ul>
+                <li><a href="../index.html" style="color: white;"><i class="fas fa-eye"></i> Zur Website</a></li>
+                <li><a href="#" onclick="clearAllMessages()" style="color: #fda4af;"><i class="fas fa-trash"></i> Alle löschen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <h1>Eingegangene Nachrichten</h1>
+        <p>Hier werden alle Anfragen aus dem Kontaktformular lokal gespeichert angezeigt.</p>
+        <hr style="margin: 2rem 0; opacity: 0.1;">
+        
+        <div id="messageContainer">
+            <!-- Nachrichten werden per JS geladen -->
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        // Init dashboard
+        window.onload = displayMessages;
+    </script>
+</body>
+</html>
