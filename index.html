@@ -6,6 +6,95 @@
     <title>LD Commerce Solutions | E-Commerce Agentur der Zukunft</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .pricing-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: var(--text-color);
+        }
+        .price span {
+            font-size: 1rem;
+            color: #64748b;
+        }
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            color: #475569;
+        }
+        .pricing-features i {
+            color: #10b981;
+            margin-right: 10px;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 300px;
+            cursor: pointer;
+        }
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+        }
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,6 +103,8 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Leistungen</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricing">Preise</a></li>
                 <li><a href="#about">Über uns</a></li>
                 <li><a href="#contact">Kontakt</a></li>
                 <li><a href="admin/index.html" class="admin-link">Admin Area</a></li>
@@ -46,6 +137,66 @@
                 <i class="fas fa-robot"></i>
                 <h3>KI-Integration</h3>
                 <p>Automatisierte Workflows und KI-Chatbots für Ihren Erfolg.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Portfolio & Case Studies</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="portfolio-overlay">
+                    <h3>TechGear Pro</h3>
+                    <p>Shopify Relaunch & KI-Content Automation</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="portfolio-overlay">
+                    <h3>EcoFashion Hub</h3>
+                    <p>Headless Commerce mit Next.js & Shopify</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" style="background-color: #f1f5f9;">
+        <h2>Wählen Sie Ihren Erfolg</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Foundations</h3>
+                <div class="price">2.490€</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Shopify Standard Setup</li>
+                    <li><i class="fas fa-check"></i> Basic SEO-Konfiguration</li>
+                    <li><i class="fas fa-check"></i> 2 Zahlungs-Provider</li>
+                    <li><i class="fas fa-check"></i> E-Mail Support</li>
+                </ul>
+                <a href="#contact" class="btn" style="background: #64748b;">Paket anfragen</a>
+            </div>
+            <div class="pricing-card popular">
+                <div class="badge">Bestseller</div>
+                <h3>Growth & Scale</h3>
+                <div class="price">7.900€</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Custom Theme Design</li>
+                    <li><i class="fas fa-check"></i> NOVA KI-Content Integration</li>
+                    <li><i class="fas fa-check"></i> Conversion Optimierung</li>
+                    <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+                </ul>
+                <a href="#contact" class="btn">Jetzt skalieren</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Headless Commerce</li>
+                    <li><i class="fas fa-check"></i> Komplette ERP-Anbindung</li>
+                    <li><i class="fas fa-check"></i> Strategische Beratung</li>
+                    <li><i class="fas fa-check"></i> Dedizierter KI-Agent</li>
+                </ul>
+                <a href="#contact" class="btn" style="background: #1e293b;">Individuell anfragen</a>
             </div>
         </div>
     </section>

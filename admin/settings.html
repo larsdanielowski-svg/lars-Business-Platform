@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstellungen | Admin Dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sidebar {
+            width: 250px;
+            background: #1e293b;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 2rem;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            display: block;
+            transition: all 0.3s;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background: #334155;
+            color: white;
+            border-left: 4px solid var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        .settings-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            max-width: 800px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <div class="sidebar">
+        <div class="logo" style="padding: 0 2rem 2rem; color: white;">LDC <span>Admin</span></div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-envelope"></i> Nachrichten</a></li>
+            <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Einstellungen</a></li>
+            <li><a href="../index.html"><i class="fas fa-eye"></i> Zur Website</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header style="background: transparent; box-shadow: none; position: relative; padding: 0; margin-bottom: 2rem;">
+            <h1>Einstellungen</h1>
+        </header>
+
+        <div class="settings-card">
+            <form id="settingsForm">
+                <h3>Allgemeine Informationen</h3>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label>Unternehmensname</label>
+                    <input type="text" value="LD Commerce Solutions">
+                </div>
+                <div class="form-group">
+                    <label>Kontakt E-Mail</label>
+                    <input type="email" value="lars@ld-commerce.com">
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Branding (Visual Design)</h3>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label>Primärfarbe</label>
+                    <input type="color" value="#2563eb">
+                </div>
+                <div class="form-group">
+                    <label>Dashboard-Modus</label>
+                    <select>
+                        <option>Light Mode</option>
+                        <option>Dark Mode</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn" style="width: 100%;" onclick="alert('Einstellungen gespeichert!')">Änderungen speichern</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
