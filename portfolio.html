@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .portfolio-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #00468b 0%, #00b4d8 100%);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 70, 139, 0.15);
+        }
+        .portfolio-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .portfolio-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #00468b;
+            color: white;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .portfolio-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00468b 0%, #00b4d8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        .portfolio-content h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .portfolio-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .portfolio-tag {
+            background: #e8f4ff;
+            color: #00468b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .portfolio-link {
+            display: inline-block;
+            color: #00468b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .portfolio-link:hover {
+            text-decoration: underline;
+        }
+        .stats-section {
+            background: #f8fafc;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #00468b;
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            color: #666;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">LD</div>
+                <span>LD Commerce Solutions</span>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-list">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#expertise">Expertise</a></li>
+                <li><a href="index.html#preise">Preise</a></li>
+                <li><a href="index.html#consultant" class="btn-consultant">AI Consultant</a></li>
+                <li><a href="admin/index.html" class="admin-link">Admin</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="portfolio-hero">
+            <h1>Unsere Projekte</h1>
+            <p>Entdecken Sie eine Auswahl unserer erfolgreich umgesetzten Projekte - von Web-Apps über Automatisierungslösungen bis hin zu komplexen Business-Systemen.</p>
+            <a href="#contact" class="btn btn-white">Projekt starten</a>
+        </div>
+
+        <div class="portfolio-container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Alle</button>
+                <button class="filter-btn" data-filter="web">Web Entwicklung</button>
+                <button class="filter-btn" data-filter="app">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ai">KI Automatisierung</button>
+                <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web ai">
+                    <div class="portfolio-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Web Entwicklung</span>
+                            <span class="portfolio-tag">KI Integration</span>
+                        </div>
+                        <h3>E-Commerce Automatisierung</h3>
+                        <p>Vollständig automatisierte E-Commerce Plattform mit KI-gestütztem Produktempfehlungssystem und intelligenter Bestandsverwaltung.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Mobile App</span>
+                            <span class="portfolio-tag">React Native</span>
+                        </div>
+                        <h3>Fitness Tracking App</h3>
+                        <p>Native Mobile App für Fitness-Tracking mit sozialen Funktionen, personalisierten Trainingsplänen und Gesundheitsdaten-Analyse.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai ecommerce">
+                    <div class="portfolio-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">KI Automatisierung</span>
+                            <span class="portfolio-tag">E-Commerce</span>
+                        </div>
+                        <h3>Smart Inventory Management</h3>
+                        <p>KI-gesteuerte Bestandsverwaltung mit automatischer Nachbestellung und Bedarfsprognose für Online-Händler.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Web Entwicklung</span>
+                            <span class="portfolio-tag">Business Intelligence</span>
+                        </div>
+                        <h3>Business Analytics Dashboard</h3>
+                        <p>Echtzeit-Business Intelligence Dashboard mit interaktiven Visualisierungen und KI-gestützten Insights.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="app ai">
+                    <div class="portfolio-image">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Mobile App</span>
+                            <span class="portfolio-tag">KI Chatbot</span>
+                        </div>
+                        <h3>Customer Service Chatbot</h3>
+                        <p>Intelligenter Chatbot für Kundenservice mit natürlicher Sprachverarbeitung und Multi-Channel-Support.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web ecommerce">
+                    <div class="portfolio-image">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Web Entwicklung</span>
+                            <span class="portfolio-tag">E-Commerce</span>
+                        </div>
+                        <h3>Multi-Vendor Marketplace</h3>
+                        <p>Moderne Multi-Vendor E-Commerce Plattform mit integriertem Zahlungsgateway und Lieferanten-Management.</p>
+                        <a href="#" class="portfolio-link">Projekt ansehen →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h2>Unsere Erfolge in Zahlen</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Abgeschlossene Projekte</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>95%</h3>
+                        <p>Kundenzufriedenheit</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Support Verfügbarkeit</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>30 Tage</h3>
+                        <p>Geld-zurück-Garantie</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">LD</div>
+                    <span>LD Commerce Solutions</span>
+                </div>
+                <div class="footer-links">
+                    <a href="rechtliches/datenschutz.html">Datenschutz</a>
+                    <a href="rechtliches/impressum.html">Impressum</a>
+                    <a href="rechtliches/agb.html">AGB</a>
+                    <a href="index.html#contact">Kontakt</a>
+                    <a href="about.html">Über uns</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <p class="footer-copyright">© 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-list').classList.toggle('show');
+        });
+
+        // Portfolio Filter
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const items = document.querySelectorAll('.portfolio-item');
+                
+                items.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initialize ScrollReveal
+        if (typeof ScrollReveal !== 'undefined') {
+            ScrollReveal().reveal('.portfolio-item', {
+                delay: 200,
+                distance: '50px',
+                origin: 'bottom',
+                interval: 100
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js?v=1.2"></script>
+</body>
+</html>

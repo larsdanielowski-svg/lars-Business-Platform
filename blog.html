@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .blog-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #00b4d8 0%, #00468b 100%);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
+        }
+        .blog-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .blog-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .search-bar button {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #00468b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .blog-post {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00d4ff 0%, #00468b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .blog-content {
+            padding: 1.5rem;
+        }
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .blog-category {
+            background: #e8f4ff;
+            color: #00468b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .blog-content h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .blog-link {
+            display: inline-block;
+            color: #00468b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .blog-link:hover {
+            text-decoration: underline;
+        }
+        .sidebar {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+        .sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .sidebar a {
+            color: #00468b;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .newsletter {
+            background: linear-gradient(135deg, #00468b 0%, #00b4d8 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        .newsletter p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        .newsletter-form button {
+            background: white;
+            color: #00468b;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">LD</div>
+                <span>LD Commerce Solutions</span>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-list">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#expertise">Expertise</a></li>
+                <li><a href="index.html#preise">Preise</a></li>
+                <li><a href="index.html#consultant" class="btn-consultant">AI Consultant</a></li>
+                <li><a href="admin/index.html" class="admin-link">Admin</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="blog-hero">
+            <h1>Unser Blog</h1>
+            <p>Erfahren Sie mehr über Web-Entwicklung, KI-Automatisierung und Business-Strategien von unseren Experten.</p>
+        </div>
+
+        <div class="blog-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Artikel suchen...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">KI Automatisierung</span>
+                            <span>04.02.2026 • 5 Min Lesezeit</span>
+                        </div>
+                        <h3>Wie KI Ihre Business-Prozesse revolutionieren kann</h3>
+                        <p>Entdecken Sie, wie künstliche Intelligenz repetitive Aufgaben automatisieren und Ihre Effizienz steigern kann. Praktische Beispiele für kleine und mittlere Unternehmen.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">E-Commerce</span>
+                            <span>03.02.2026 • 7 Min Lesezeit</span>
+                        </div>
+                        <h3>Der ultimative Guide für erfolgreichen Online-Handel 2026</h3>
+                        <p>Die wichtigsten Trends und Strategien für E-Commerce im Jahr 2026. Von KI-gestütztem Marketing bis zu nachhaltigen Lieferketten.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">App Entwicklung</span>
+                            <span>02.02.2026 • 6 Min Lesezeit</span>
+                        </div>
+                        <h3>Native vs. Cross-Platform: Welche App-Entwicklung ist die richtige?</h3>
+                        <p>Eine detaillierte Analyse der Vor- und Nachteile von nativer und cross-platform App-Entwicklung für Startups und etablierte Unternehmen.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Business Intelligence</span>
+                            <span>01.02.2026 • 8 Min Lesezeit</span>
+                        </div>
+                        <h3>Datengetriebene Entscheidungen: Wie Sie aus Zahlen Werte schaffen</h3>
+                        <p>Wie Unternehmen Datenanalysen nutzen können, um bessere Geschäftsentscheidungen zu treffen und Wettbewerbsvorteile zu erzielen.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Cybersecurity</span>
+                            <span>31.01.2026 • 9 Min Lesezeit</span>
+                        </div>
+                        <h3>Cybersecurity für kleine Unternehmen: Schutz ohne großes Budget</h3>
+                        <p>Essentielle Sicherheitsmaßnahmen, die jedes kleine Unternehmen umsetzen sollte, um sich vor Cyberangriffen zu schützen.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Team Management</span>
+                            <span>30.01.2026 • 6 Min Lesezeit</span>
+                        </div>
+                        <h3>Remote-Teams effektiv führen: Tools und Best Practices</h3>
+                        <p>Wie Sie verteilte Teams erfolgreich managen und die Produktivität trotz räumlicher Distanz maximieren können.</p>
+                        <a href="#" class="blog-link">Weiterlesen →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="newsletter">
+                <h2>Newsletter abonnieren</h2>
+                <p>Bleiben Sie auf dem Laufenden mit den neuesten Trends in Web-Entwicklung und Business-Automatisierung.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Ihre E-Mail-Adresse">
+                    <button>Abonnieren</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">LD</div>
+                    <span>LD Commerce Solutions</span>
+                </div>
+                <div class="footer-links">
+                    <a href="rechtliches/datenschutz.html">Datenschutz</a>
+                    <a href="rechtliches/impressum.html">Impressum</a>
+                    <a href="rechtliches/agb.html">AGB</a>
+                    <a href="index.html#contact">Kontakt</a>
+                    <a href="about.html">Über uns</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <p class="footer-copyright">© 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-list').classList.toggle('show');
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+        const blogPosts = document.querySelectorAll('.blog-post');
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            blogPosts.forEach(post => {
+                const title = post.querySelector('h3').textContent.toLowerCase();
+                const content = post.querySelector('p').textContent.toLowerCase();
+                const category = post.querySelector('.blog-category').textContent.toLowerCase();
+                
+                if (searchTerm === '' || title.includes(searchTerm) || content.includes(searchTerm) || category.includes(searchTerm)) {
+                    post.style.display = 'block';
+                    setTimeout(() => {
+                        post.style.opacity = '1';
+                        post.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    post.style.opacity = '0';
+                    post.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        post.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (email) {
+                alert('Vielen Dank für Ihre Anmeldung! Sie erhalten bald eine Bestätigungs-E-Mail.');
+                this.querySelector('input').value = '';
+            }
+        });
+
+        // Initialize ScrollReveal
+        if (typeof ScrollReveal !== 'undefined') {
+            ScrollReveal().reveal('.blog-post', {
+                delay: 200,
+                distance: '50px',
+                origin: 'bottom',
+                interval: 100
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js?v=1.2"></script>
+</body>
+</html>
