@@ -4,6 +4,7 @@
 - **01:24**: Deadline gesetzt (6:30 Uhr, 5h8min verbleibend)
 - **01:24**: Coding Agent Phase 1 gestartet (Website Erweiterung, Admin Basis)
 - **01:25**: Rechtliche Seiten werden erstellt
+- **01:35**: Cron-Job ausgeführt, Commit erstellt, Push fehlgeschlagen (4h55min verbleibend)
 
 ## Aktueller Fokus
 1. Rechtliche Seiten (Datenschutz, Impressum, AGB) - höchste Priorität
@@ -12,8 +13,8 @@
 4. Dark Mode Toggle
 
 ## Fortschritt
-- [ ] Datenschutz.html
-- [ ] Impressum.html  
+- [x] Datenschutz.html
+- [x] Impressum.html  
 - [ ] AGB.html
 - [ ] About.html
 - [ ] Portfolio.html
