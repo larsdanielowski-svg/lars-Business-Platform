@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über uns | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .about-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        }
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .mission-section {
+            background: #f8fafc;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .mission-section h2 {
+            color: #1e293b;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .mission-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #475569;
+        }
+        .team-section {
+            margin-bottom: 4rem;
+        }
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .team-member h3 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .team-member .role {
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .team-member .bio {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        .values-section {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        .value-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .value-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #1e293b;
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            background: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .back-to-home:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">LD</div>
+                <span>LD Commerce Solutions</span>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-list">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#expertise">Expertise</a></li>
+                <li><a href="index.html#preise">Preise</a></li>
+                <li><a href="index.html#consultant" class="btn-consultant">AI Consultant</a></li>
+                <li><a href="admin/index.html" class="admin-link">Admin</a></li>
+                <li><a href="about.html" class="active">Über uns</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-hero">
+            <h1>Über uns</h1>
+            <p>Wir transformieren Unternehmen durch intelligente Automatisierung und moderne Web-Lösungen. Mit Leidenschaft für Innovation und einem Fokus auf messbare Ergebnisse.</p>
+            <a href="#contact" class="btn btn-white">Kontakt aufnehmen</a>
+        </div>
+
+        <section class="mission-section">
+            <div class="container">
+                <h2>Unsere Mission</h2>
+                <p>Wir glauben daran, dass Technologie Unternehmen transformieren kann. LD Commerce Solutions wurde gegründet, um kleinen und mittleren Unternehmen den Zugang zu erstklassiger Softwareentwicklung und AI-Automation zu ermöglichen. Wir kombinieren tiefes technisches Know-how mit einem klaren Verständnis für geschäftliche Herausforderungen.</p>
+                <p>Unser Ziel ist es, nicht nur Code zu schreiben, sondern echte Geschäftslösungen zu schaffen, die skalieren, wachsen und Ihren Erfolg vorantreiben.</p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2>Unser Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-avatar">LD</div>
+                        <h3>Lars Danielowski</h3>
+                        <div class="role">Gründer & CEO</div>
+                        <p class="bio">Mit über 10 Jahren Erfahrung in Softwareentwicklung und Unternehmensberatung führt Lars das Unternehmen mit einer klaren Vision: Technologie zugänglich und wirkungsvoll machen.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">AI</div>
+                        <h3>Nova</h3>
+                        <div class="role">AI Strategist & Partner</div>
+                        <p class="bio">Unsere strategische KI-Partnerin unterstützt bei der Konzeption, Automatisierung und Skalierung von Geschäftsprozessen. Mit fortgeschrittenen Analysen und kreativen Lösungsansätzen.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">DT</div>
+                        <h3>Expert Network</h3>
+                        <div class="role">Spezialisten Team</div>
+                        <p class="bio">Ein Netzwerk aus erfahrenen Entwicklern, Designern und Strategie-Experten, die je nach Projektanforderungen eingebunden werden. Flexibel, kompetent und ergebnisorientiert.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2>Unsere Werte</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Wir bleiben an der Spitze der Technologie und setzen auf moderne, zukunftssichere Lösungen.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Partnerschaft</h3>
+                        <p>Wir sehen uns als Partner unserer Kunden – transparente Kommunikation und gemeinsamer Erfolg stehen im Vordergrund.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Ergebnisorientiert</h3>
+                        <p>Jedes Projekt wird anhand messbarer Geschäftsergebnisse gemessen – nicht nur an technischen Metriken.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Sicherheit</h3>
+                        <p>Datenschutz und Sicherheit haben höchste Priorität in allen unseren Lösungen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Bereit für die nächste Stufe?</h2>
+                <p>Ob Sie eine App entwickeln, Ihre Webpräsenz modernisieren oder Prozesse automatisieren möchten – wir helfen Ihnen dabei.</p>
+                <a href="index.html#contact" class="btn btn-gradient">Projekt starten <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">LD</div>
+                    <span>LD Commerce Solutions</span>
+                </div>
+                <div class="footer-links">
+                    <a href="rechtliches/datenschutz.html">Datenschutz</a>
+                    <a href="rechtliches/impressum.html">Impressum</a>
+                    <a href="rechtliches/agb.html">AGB</a>
+                    <a href="index.html#contact">Kontakt</a>
+                    <a href="about.html">Über uns</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <p class="footer-copyright">© 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-list').classList.toggle('show');
+        });
+        
+        // Add active class to current page in nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('#nav-list a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js?v=1.2"></script>
+</body>
+</html>
