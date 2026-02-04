@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktivitäts-Log | LD Commerce Solutions Admin</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Admin Panel Base Styles */
+        .sidebar {
+            width: 250px;
+            background: #1e293b;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 2rem;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            display: block;
+            transition: all 0.3s;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background: #334155;
+            color: white;
+            border-left: 4px solid #2563eb;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+        }
+        
+        /* Mobile Hamburger Menu */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1.25rem;
+            z-index: 1002;
+            cursor: pointer;
+        }
+        
+        /* Activity Log Specific Styles */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .activity-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .activity-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+        
+        .activity-item {
+            position: relative;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        
+        .activity-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #2563eb;
+        }
+        
+        .activity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .activity-user {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .type-create { background: #dcfce7; color: #166534; }
+        .type-update { background: #fef3c7; color: #92400e; }
+        .type-delete { background: #fee2e2; color: #991b1b; }
+        .type-login { background: #dbeafe; color: #1e40af; }
+        .type-system { background: #ede9fe; color: #5b21b6; }
+        
+        .activity-details {
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+        
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-controls select,
+        .filter-controls input {
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        /* Export Controls */
+        .export-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-timeline {
+                padding-left: 1.5rem;
+            }
+            
+            .activity-item::before {
+                left: -1.25rem;
+            }
+            
+            /* Touch-friendly improvements */
+            .sidebar ul li a {
+                padding: 1rem 1.5rem;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .btn, button {
+                min-height: 44px;
+                padding: 12px 16px !important;
+                font-size: 1rem;
+            }
+            
+            select, input {
+                font-size: 16px !important;
+                min-height: 44px;
+                padding: 12px 16px !important;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .main-content {
+                margin-left: 220px;
+                padding: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Button Styles */
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #64748b;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        .btn-success {
+            background: #10b981;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="logo" style="padding: 0 2rem 2rem; color: white;">LDC <span>Admin</span></div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-envelope"></i> Nachrichten</a></li>
+            <li><a href="admin-users.html"><i class="fas fa-users"></i> Benutzer</a></li>
+            <li><a href="admin-activity.html" class="active"><i class="fas fa-history"></i> Aktivitäten</a></li>
+            <li><a href="admin-content.html"><i class="fas fa-edit"></i> Content</a></li>
+            <li><a href="admin-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            <li><a href="admin-media.html"><i class="fas fa-images"></i> Media</a></li>
+            <li><a href="admin-seo.html"><i class="fas fa-search"></i> SEO</a></li>
+            <li><a href="admin-team.html"><i class="fas fa-user-friends"></i> Team</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Einstellungen</a></li>
+            <li><a href="../index.html"><i class="fas fa-eye"></i> Zur Website</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="admin-header">
+            <h1>Aktivitäts-Log</h1>
+            <div class="export-controls">
+                <button class="btn btn-secondary" onclick="exportLogs('csv')">
+                    <i class="fas fa-file-csv"></i> CSV Export
+                </button>
+                <button class="btn btn-secondary" onclick="exportLogs('json')">
+                    <i class="fas fa-file-code"></i> JSON Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="todayActivities">0</div>
+                <div class="stat-label">Heute</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="weekActivities">0</div>
+                <div class="stat-label">Diese Woche</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="monthActivities">0</div>
+                <div class="stat-label">Dieser Monat</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalActivities">0</div>
+                <div class="stat-label">Gesamt</div>
+            </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="admin-card">
+            <h3>Filter</h3>
+            <div class="filter-controls">
+                <select id="filterUser">
+                    <option value="">Alle Benutzer</option>
+                    <option value="lars">Lars D.</option>
+                    <option value="max">Max Mustermann</option>
+                    <option value="anna">Anna Schmidt</option>
+                </select>
+                <select id="filterType">
+                    <option value="">Alle Aktionen</option>
+                    <option value="create">Erstellen</option>
+                    <option value="update">Bearbeiten</option>
+                    <option value="delete">Löschen</option>
+                    <option value="login">Login</option>
+                    <option value="system">System</option>
+                </select>
+                <select id="filterDate">
+                    <option value="">Alle Zeiträume</option>
+                    <option value="today">Heute</option>
+                    <option value="week">Diese Woche</option>
+                    <option value="month">Dieser Monat</option>
+                </select>
+                <button class="btn" onclick="applyFilters()">
+                    <i class="fas fa-filter"></i> Filter anwenden
+                </button>
+                <button class="btn btn-secondary" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Zurücksetzen
+                </button>
+            </div>
+        </div>
+
+        <!-- Activity Timeline -->
+        <div class="admin-card">
+            <h3>Aktivitäts-Timeline</h3>
+            <div class="activity-timeline" id="activityTimeline">
+                <!-- Activities will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Change History -->
+        <div class="admin-card">
+            <h3>Änderungshistorie</h3>
+            <table class="admin-table" id="changeHistory">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Benutzer</th>
+                        <th>Aktion</th>
+                        <th>Objekt</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- History will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script src="admin-responsive.js"></script>
+    <script>
+        // Sample activity data
+        const sampleActivities = [
+            {
+                id: 1,
+                user: "Lars D.",
+                userId: "lars",
+                type: "login",
+                action: "Benutzer eingeloggt",
+                details: "IP: 192.168.1.100 | Browser: Chrome 120 | Zeit: 2 Minuten",
+                timestamp: new Date().getTime(),
+                date: "Heute, 14:30"
+            },
+            {
+                id: 2,
+                user: "Lars D.",
+                userId: "lars",
+                type: "create",
+                action: "Neuer Blog-Post erstellt",
+                details: "Titel: 'SEO Best Practices 2024' | Kategorie: Marketing",
+                timestamp: new Date().getTime() - 3600000,
+                date: "Heute, 13:45"
+            },
+            {
+                id: 3,
+                user: "Max Mustermann",
+                userId: "max",
+                type: "update",
+                action: "Seite aktualisiert",
+                details: "Seite: Über uns | Änderungen: Team-Bild hinzugefügt",
+                timestamp: new Date().getTime() - 86400000,
+                date: "Gestern, 16:20"
+            },
+            {
+                id: 4,
+                user: "Anna Schmidt",
+                userId: "anna",
+                type: "view",
+                action: "Analytics Dashboard aufgerufen",
+                details: "Zeitraum: Letzte 7 Tage | Metriken: Besucher, Conversions",
+                timestamp: new Date().getTime() - 172800000,
+                date: "Vor 2 Tagen, 10:15"
+            },
+            {
+                id: 5,
+                user: "System",
+                userId: "system",
+                type: "system",
+                action: "Backup erstellt",
+                details: "Backup-Typ: Vollständig | Größe: 2.4 GB | Dauer: 5 Minuten",
+                timestamp: new Date().getTime() - 259200000,
+                date: "Vor 3 Tagen, 03:00"
+            }
+        ];
+
+        // Load activities on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadActivities();
+            updateStats();
+        });
+
+        function loadActivities(filteredActivities = null) {
+            const timeline = document.getElementById('activityTimeline');
+            const historyTable = document.getElementById('changeHistory').querySelector('tbody');
+            
+            if (!timeline || !historyTable) return;
+
+            // Load from localStorage or use sample data
+            const activities = filteredActivities || 
+                JSON.parse(localStorage.getItem('activity_logs')) || 
+                sampleActivities;
+            
+            // Sort by timestamp (newest first)
+            const sortedActivities = [...activities].sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Update timeline
+            timeline.innerHTML = sortedActivities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-meta">
+                        <div class="activity-user">
+                            <i class="fas fa-user"></i>
+                            <span style="font-weight: 600;">${activity.user}</span>
+                        </div>
+                        <span class="activity-type type-${activity.type}">
+                            ${activity.type === 'create' ? 'Erstellen' :
+                              activity.type === 'update' ? 'Bearbeiten' :
+                              activity.type === 'delete' ? 'Löschen' :
+                              activity.type === 'login' ? 'Login' :
+                              activity.type === 'system' ? 'System' : 'Ansicht'}
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 0.5rem; color: #0f172a;">${activity.action}</p>
+                    <div class="activity-details">
+                        ${activity.details}
+                    </div>
+                    <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #64748b;">
+                        <i class="far fa-clock"></i> ${activity.date}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Update history table
+            historyTable.innerHTML = sortedActivities.map(activity => `
+                <tr>
+                    <td>${activity.date}</td>
+                    <td>${activity.user}</td>
+                    <td>
+                        <span class="activity-type type-${activity.type}">
+                            ${activity.type === 'create' ? 'Erstellen' :
+                              activity.type === 'update' ? 'Bearbeiten' :
+                              activity.type === 'delete' ? 'Löschen' :
+                              activity.type === 'login' ? 'Login' :
+                              activity.type === 'system' ? 'System' : 'Ansicht'}
+                        </span>
+                    </td>
+                    <td>${activity.action}</td>
+                    <td>
+                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" 
+                                onclick="showActivityDetails(${activity.id})">
+                            Details
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function applyFilters() {
+            const userFilter = document.getElementById('filterUser').value;
+            const typeFilter = document.getElementById('filterType').value;
+            const dateFilter = document.getElementById('filterDate').value;
+            
+            const activities = JSON.parse(localStorage.getItem('activity_logs')) || sampleActivities;
+            
+            let filteredActivities = activities;
+            
+            // Apply user filter
+            if (userFilter) {
+                filteredActivities = filteredActivities.filter(a => a.userId === userFilter);
+            }
+            
+            // Apply type filter
+            if (typeFilter) {
+                filteredActivities = filteredActivities.filter(a => a.type === typeFilter);
+            }
+            
+            // Apply date filter
+            if (dateFilter) {
+                const now = new Date();
+                let startTime;
+                
+                switch(dateFilter) {
+                    case 'today':
+                        startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+                        break;
+                    case 'week':
+                        startTime = now.getTime() - (7 * 24 * 60 * 60 * 1000);
+                        break;
+                    case 'month':
+                        startTime = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate()).getTime();
+                        break;
+                }
+                
+                if (startTime) {
+                    filteredActivities = filteredActivities.filter(a => a.timestamp >= startTime);
+                }
+            }
+            
+            loadActivities(filteredActivities);
+            updateStats(filteredActivities);
+        }
+
+        function clearFilters() {
+            document.getElementById('filterUser').value = '';
+            document.getElementById('filterType').value = '';
+            document.getElementById('filterDate').value = '';
+            loadActivities();
+            updateStats();
+        }
+
+        function updateStats(activities = null) {
+            const allActivities = activities || 
+                JSON.parse(localStorage.getItem('activity_logs')) || 
+                sampleActivities;
+            
+            const now = new Date();
+            const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            const weekStart = now.getTime() - (7 * 24 * 60 * 60 * 1000);
+            const monthStart = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate()).getTime();
+            
+            const todayCount = allActivities.filter(a => a.timestamp >= todayStart).length;
+            const weekCount = allActivities.filter(a => a.timestamp >= weekStart).length;
+            const monthCount = allActivities.filter(a => a.timestamp >= monthStart).length;
+            const totalCount = allActivities.length;
+            
+            document.getElementById('todayActivities').textContent = todayCount;
+            document.getElementById('weekActivities').textContent = weekCount;
+            document.getElementById('monthActivities').textContent = monthCount;
+            document.getElementById('totalActivities').textContent = totalCount;
+        }
+
+        function showActivityDetails(id) {
+            const activities = JSON.parse(localStorage.getItem('activity_logs')) || sampleActivities;
+            const activity = activities.find(a => a.id === id);
+            
+            if (activity) {
+                const details = `
+                    <strong>Vollständige Details:</strong><br><br>
+                    <strong>Benutzer:</strong> ${activity.user}<br>
+                    <strong>Aktion:</strong> ${activity.action}<br>
+                    <strong>Typ:</strong> ${activity.type}<br>
+                    <strong>Datum:</strong> ${activity.date}<br>
+                    <strong>Details:</strong><br>
+                    <pre style="background: #f8fafc; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">${activity.details}</pre>
+                `;
+                
+                alert(details);
+            }
+        }
+
+        function exportLogs(format) {
+            const activities = JSON.parse(localStorage.getItem('activity_logs')) || sampleActivities;
+            
+            let exportContent;
+            let filename;
+            
+            if (format === 'csv') {
+                // Create CSV content
+                const headers = ['ID', 'Benutzer', 'Aktion', 'Typ', 'Details', 'Datum'];
+                const rows = activities.map(a => [
+                    a.id,
+                    a.user,
+                    a.action,
+                    a.type,
+                    a.details.replace(/,/g, ';'),
+                    a.date
+                ]);
+                
+                const csvContent = [
+                    headers.join(','),
+                    ...rows.map(row => row.join(','))
+                ].join('\n');
+                
+                exportContent = csvContent;
+                filename = `activity-logs-${new Date().toISOString().slice(0,10)}.csv`;
+                
+            } else if (format === 'json') {
+                // Create JSON content
+                exportContent = JSON.stringify(activities, null, 2);
+                filename = `activity-logs-${new Date().toISOString().slice(0,10)}.json`;
+            }
+            
+            // Create download link
+            const blob = new Blob([exportContent], { type: format === 'csv' ? 'text/csv' : 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert(`Aktivitäts-Logs als ${format.toUpperCase()} exportiert!`);
+        }
+
+        // Function to log new activity
+        function logActivity(user, type, action, details) {
+            const activities = JSON.parse(localStorage.getItem('activity_logs')) || sampleActivities;
+            
+            const newActivity = {
+                id: Date.now(),
+                user: user,
+                userId: user.toLowerCase().replace(/[^a-z]/g, ''),
+                type: type,
+                action: action,
+                details: details,
+                timestamp: new Date().getTime(),
+                date: new Date().toLocaleString('de-DE', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+            
+            activities.unshift(newActivity);
+            localStorage.setItem('activity_logs', JSON.stringify(activities));
+        }
+    </script>
+</body>
+</html>
