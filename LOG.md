@@ -37,3 +37,6 @@ Coding Agent arbeitet an Phase 2, GitHub Push funktioniert, GitHub Pages Workflo
 - **Letzte Aktivität:** Vor 2 Minuten
 - **Auto-Commit:** Nicht nötig (alles bereits gepusht)
 
+## 2026-02-04 07:25:47: Kontaktformular Modernisierung gestartet
+Coding Agent arbeitet an modernem Formular-Design, da aktuelles Formular altmodisch aussieht.
+
